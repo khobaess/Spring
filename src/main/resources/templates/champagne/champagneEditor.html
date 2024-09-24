@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование товара</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .card {
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .card:hover {
+            transform: scale(1.02); /* Легкое увеличение карточки при наведении */
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        .content {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для карточек */
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <!-- Используем col-md-4 для 3 колонок на больших экранах, col-sm-6 для 2 на маленьких, col-12 для 1 колонки на мобильных -->
+        <div class="col-lg-4 col-md-6 col-sm-12" th:each="prod : ${champagnes}">
+            <div class="card">
+                <img th:src="${prod.getPhoto()}" class="card-img-top" alt="Изображение товара">
+                <div class="card-body d-flex flex-column">
+                    <a th:href="@{/champagne/{id}(id=${prod.getId()})}" class="card-title black-link" th:text="${prod.getName()}"></a>
+                    <p th:text="${prod.getPrice()} + ' руб/шт'"></p>
+
+                    <!-- Форма редактирования товара -->
+                    <form th:method="PATCH" th:action="@{/prod/{id}(id=${prod.getId()})}" th:object="${champagne}">
+                        <div class="form-group">
+                            <label for="name">Название</label>
+                            <input th:field="*{name}" class="form-control" id="name" placeholder="Введите название">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Описание</label>
+                            <input th:field="*{description}" class="form-control" id="description" placeholder="Введите описание">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Цена</label>
+                            <input th:field="*{price}" class="form-control" id="price" placeholder="Введите цену">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                    </form>
+
+                    <!-- Форма удаления товара -->
+                    <form th:action="@{/champagne_delete/{id}(id=${prod.getId()})}" th:method="post" style="margin-top: 10px;">
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

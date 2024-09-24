@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Drink Store</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            margin-top: 0;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #ff9900;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .header h1 {
+            font-size: 3rem;
+        }
+        .header p {
+            font-size: 1.2rem;
+        }
+        .header .btn {
+            margin: 0 10px;
+        }
+        .container {
+            padding-top: 20px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            height: 400px; /* фиксированная высота карточки */
+        }
+        .card-title {
+            font-size: 1.3rem;
+            margin-top: 10px;
+            text-align: center; /* центрируем текст */
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card-img-top {
+            height: 300px; /* фиксированная высота изображения */
+            width: 100%; /* картинка займет всю ширину */
+            object-fit: contain; /* сохраняем пропорции, показываем все изображение */
+        }
+        .black-link {
+            color: black;
+            text-decoration: none;
+        }
+        .black-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Добро пожаловать!</h1>
+    <p>Откройте для себя наш ассортимент различных напитков.</p>
+    <div>
+        <a class="btn btn-light" th:href="@{/auth/login}">Вход в личный кабинет</a>
+        <a th:href="@{/cart}" class="btn btn-outline-light">Корзина</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <img src="https://decanter.ru/image/366935-shampanskoe-moet-chandon-brut-imperial-0-75-l-sq.jpg" class="card-img-top" th:alt="'Product image'">
+                <div class="card-body d-flex flex-column">
+                    <a href="/champagnes" class="card-title black-link">
+                        Шампанское и игристое
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <img src="https://vinoteki.ru/wp-content/uploads/2024/02/62435_8ff5d551-a09e-11ee-81a9-002590ea1e13.jpeg" class="card-img-top" th:alt="'Product image'">
+                <div class="card-body d-flex flex-column">
+                    <a href="/wines" class="card-title black-link">
+                        Вина
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <img src="https://vinoteki.ru/wp-content/uploads/2024/02/51623_4603ba88-fc0d-11eb-816d-002590ea1e13.jpeg" class="card-img-top" th:alt="'Product image'">
+                <div class="card-body d-flex flex-column">
+                    <a href="/lowAlcohols" class="card-title black-link">
+                        Слабый алкоголь
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <img src="https://vinoteki.ru/wp-content/uploads/2024/02/20343_f4daec20-b6d1-11ea-814b-002590ea1e13.jpeg" class="card-img-top" th:alt="'Product image'">
+                <div class="card-body d-flex flex-column">
+                    <a href="/strongAlcohols" class="card-title black-link">
+                        Крепкий алкоголь
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <img src="https://napitkistore.ru/wp-content/uploads/2024/08/energeticheskij-napitok-monster-energy-bad-apple-500-ml.webp" class="card-img-top" th:alt="'Product image'">
+                <div class="card-body d-flex flex-column">
+                    <a href="/energetics" class="card-title black-link">
+                        Энергетики
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

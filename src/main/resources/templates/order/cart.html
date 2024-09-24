@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0; /* Уменьшенный отступ */
+            background-color: #ff9900; /* Более тёмный оттенок для контраста */
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Ваша корзина</h1>
+    <p>Проверьте свои товары перед покупкой.</p>
+    <a th:href="@{/catalog}" class="btn btn-outline-light">Каталог</a>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

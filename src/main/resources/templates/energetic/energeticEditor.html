@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование каталога</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            margin-top: 0;
+        }
+        .container {
+            padding-top: 30px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .black-link {
+            color: black;
+            text-decoration: none;
+        }
+        .black-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Редактирование каталога</h1>
+    <div class="row">
+        <div class="col-md-4 mb-4" th:each="en : ${energetics}">
+            <div class="card h-100">
+                <img th:src="${en.getPhoto()}" class="card-img-top" alt="Изображение товара">
+                <div class="card-body d-flex flex-column">
+                    <a th:href="@{/energetic/{id}(id=${en.getId()})}" class="card-title black-link" th:text="${en.getName()}"></a>
+                    <p th:text="${en.getPrice()} + ' руб/шт'"></p>
+                    <form th:method="PATCH" th:action="@{/energetic_edit/{id}(id=${en.getId()})}" th:object="${en}" style="display:inline;">
+                        <div class="form-group">
+                            <label for="name">Введите новое название</label>
+                            <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Название"/>
+                        </div>
+                        <div th:if="${#fields.hasErrors('name')}" class="alert alert-danger" role="alert">
+                            <p th:errors="*{name}">Ошибка с названием</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Введите новую цену</label>
+                            <input type="number" class="form-control" th:field="*{price}" id="price" placeholder="Цена"/>
+                        </div>
+                        <div th:if="${#fields.hasErrors('price')}" class="alert alert-danger" role="alert">
+                            <p th:errors="*{price}">Ошибка с ценой</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="photo">Введите новое фото (URL)</label>
+                            <input type="text" class="form-control" th:field="*{photo}" id="photo" placeholder="URL фото"/>
+                        </div>
+                        <div th:if="${#fields.hasErrors('photo')}" class="alert alert-danger" role="alert">
+                            <p th:errors="*{photo}">Ошибка с фото</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Введите новое описание</label>
+                            <input type="text" class="form-control" th:field="*{description}" id="description" placeholder="Описание"/>
+                        </div>
+                        <div th:if="${#fields.hasErrors('description')}" class="alert alert-danger" role="alert">
+                            <p th:errors="*{description}">Ошибка с описанием</p>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Обновить</button>
+                    </form>
+                    <div style="margin-top: 10px;">
+                        <form th:action="@{/product_delete/{id}(id=${en.getId()})}" th:method="delete" style="display:inline;">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a th:href="@{/catalog}" class="btn btn-light">Каталог</a>
+</div>
+</body>
+</html>

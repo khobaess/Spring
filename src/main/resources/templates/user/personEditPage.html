@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование кабинета</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .sidebar {
+            background-color: #ffcc00;
+            padding: 20px;
+            border-radius: 10px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .sidebar a {
+            color: #333;
+            margin-bottom: 10px;
+            display: block;
+            transition: color 0.3s, background-color 0.3s;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            color: #ff5733;
+            background-color: #fff26c;
+        }
+        .sidebar h5 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-left: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0; /* Уменьшенный отступ */
+            background-color: #ff9900; /* Более тёмный оттенок для контраста */
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-control {
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background-color: #ff5733;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #c70039;
+        }
+        .btn-light {
+            background-color: #fff;
+            color: #333;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        .btn-light:hover {
+            background-color: #ffcc00;
+            color: #fff;
+        }
+        .text-danger:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4">
+    <div class="header">
+        <h1>Добро пожаловать в редактирование кабинета!</h1>
+        <p>Управляйте своим аккаунтом, изменяя свои данные.</p>
+        <a th:href="@{/products}" class="btn btn-light">Каталог</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sidebar text-center">
+                <h5>Навигация</h5>
+                <a th:href="@{/person_page}">Профиль</a>
+                <a href="/orders">Заказы</a>
+                <a href="/settings">Отзывы</a>
+                <a th:href="@{/catalog}">Каталог</a>
+                <a href="/logout" class="text-danger">Выйти</a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="content">
+                <h2>Редактирование профиля</h2>
+                <form th:method="PATCH" th:action="@{/person_edit_page/{id}(id=${person.getId()})}" th:object="${person}">
+                    <div class="form-group">
+                        <label for="name">Имя пользователя</label>
+                        <input th:field="*{username}" class="form-control" id="name" placeholder="Введите имя пользователя">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input th:field="*{email}" class="form-control" id="email" placeholder="Введите email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input th:field="*{password}" class="form-control" id="password" placeholder="Введите пароль">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

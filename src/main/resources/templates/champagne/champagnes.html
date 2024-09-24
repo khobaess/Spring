@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Drink Store</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            margin-top: 0;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0; /* Уменьшенный отступ */
+            background-color: #ff9900; /* Более тёмный оттенок для контраста */
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .header h1 {
+            font-size: 3rem;
+        }
+        .header p {
+            font-size: 1.2rem;
+        }
+        .header .btn {
+            margin: 0 10px;
+        }
+        .container {
+            padding-top: 20px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out; /* Плавный переход */
+            display: flex;
+            flex-direction: column;
+        }
+        .card-title {
+            font-size: 1.3rem;
+        }
+        .card:hover {
+            transform: scale(1.05); /* Легкий эффект увеличения */
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        .button-container {
+            margin-top: auto;
+        }
+        .buy-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff5733;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .buy-button:hover {
+            background-color: #ff4500; /* Менее резкий переход */
+        }
+        .black-link {
+            color: black;
+            text-decoration: none;
+        }
+        .black-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem; /* Уменьшенный размер заголовка для мобильных */
+            }
+            .header p {
+                font-size: 1rem; /* Уменьшенный размер текста для мобильных */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Энергия в каждой банке!</h1>
+    <p>Откройте для себя наш ассортимент освежающих энергетиков.</p>
+    <div>
+        <a th:href="@{/catalog}" class="btn btn-outline-light">Каталог</a>
+        <a class="btn btn-light" th:href="@{/auth/login}">Вход в личный кабинет</a>
+        <a th:href="@{/cart}" class="btn btn-outline-light">Корзина</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mb-4" th:each="prod : ${champagnes}">
+            <div class="card h-100">
+                <img th:src="${prod.getPhoto()}" class="card-img-top" th:alt="'Product image'">
+                <div class="card-body d-flex flex-column">
+                    <a th:href="@{/champagne/{id}(id=${prod.getId()})}" class="card-title black-link"
+                       th:text="${prod.getName()}"></a>
+                    <p th:text="${prod.getPrice()} + ' руб/шт'"></p>
+                    <div class="button-container">
+                        <a th:href="@{/cart}" class="buy-button">Купить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

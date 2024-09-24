@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            margin-top: 0;
+        }
+        .header h1 {
+            font-size: 3rem;
+        }
+        .header p {
+            font-size: 1.2rem;
+        }
+        /* Modal styles */
+        .modal-header {
+            background-color: #ff9900;
+            border-bottom: none;
+        }
+        .modal-title {
+            color: #fff;
+        }
+        .modal-body {
+            background-color: #f7f7f7;
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+        .btn-primary {
+            background-color: #ff5733;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #c70039;
+        }
+        .alert {
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            padding: 2px 5px;
+            border-radius: 1px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Регистрация</h5>
+            </div>
+            <div class="modal-body">
+                <form th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
+                    <div class="form-group">
+                        <label for="name">Имя пользователя</label>
+                        <input th:field="*{username}" class="form-control" id="name" placeholder="Введите имя пользователя">
+                    </div>
+                    <div th:if="${#fields.hasErrors('username')}" class="alert alert-danger" role="alert">
+                        <p th:errors="*{username}">Ошибка с именем</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input th:field="*{email}" class="form-control" id="email" placeholder="Введите email">
+                    </div>
+                    <div th:if="${#fields.hasErrors('email')}" class="alert alert-danger" role="alert">
+                        <p th:errors="*{email}">Ошибка с email</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Введите пароль">
+                    </div>
+                    <div th:if="${#fields.hasErrors('password')}" class="alert alert-danger" role="alert">
+                        <p th:errors="*{password}">Ошибка с паролем</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
