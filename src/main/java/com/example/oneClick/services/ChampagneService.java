@@ -35,13 +35,32 @@ public class ChampagneService {
     }
 
     @Transactional
-    public void update(int id, Champagne champagne){
-        champagne.setId(id);
-        champagneRepository.save(champagne);
-    }
+    public void update(int id, Champagne champagne) {
+        Optional<Champagne> optionalChampagne = champagneRepository.findById(id);
+        if (optionalChampagne.isPresent()) {
+            Champagne existingChampagne = optionalChampagne.get();
 
+            if (champagne.getName() != null) {
+                existingChampagne.setName(champagne.getName());
+            }
+            if (champagne.getDescription() != null) {
+                existingChampagne.setDescription(champagne.getDescription());
+            }
+            if (champagne.getPhoto() != null) {
+                existingChampagne.setPhoto(champagne.getPhoto());
+            }
+            if (champagne.getPrice() > 0) {
+                existingChampagne.setPrice(champagne.getPrice());
+            }
+
+            champagneRepository.save(existingChampagne);
+        }
+    }
+    
     @Transactional
     public void delete(int id){
         champagneRepository.deleteById(id);
     }
+
+
 }

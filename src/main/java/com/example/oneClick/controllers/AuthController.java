@@ -1,6 +1,5 @@
 package com.example.oneClick.controllers;
 
-import com.example.oneClick.models.Person;
 import com.example.oneClick.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,5 +41,37 @@ public class AuthController {
         }
         personService.save(person);
         return "redirect:/catalog/catalog";
+    }
+
+    @Controller
+    @RequestMapping("auth")
+    public static class AuthController {
+
+        private final PersonService personService;
+
+        @Autowired
+        public AuthController(PersonService personService) {
+            this.personService = personService;
+        }
+
+        @GetMapping("/login")
+        public String Auth(Model model){
+            return "user/login";
+        }
+
+        @GetMapping("/registration")
+        public String create(@ModelAttribute("person") Person person){
+            return "user/registration";
+        }
+
+        @PostMapping("/registration")
+        public String save(@Valid @ModelAttribute("person") Person person,
+                           BindingResult bindingResult){
+            if (bindingResult.hasErrors()){
+                return "user/registration";
+            }
+            personService.save(person);
+            return "redirect:/catalog";
+        }
     }
 }

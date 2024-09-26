@@ -10,24 +10,24 @@ import javax.validation.constraints.NotEmpty;
 public class Energetic {
 
     @Id
-    @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @NotEmpty(message = "Empty name")
-    @Column(name = "product_name")
+    @NotEmpty(message = "имя не должен быть пустым")
+    @Column(name = "name")
     private String name;
 
-    @NotEmpty(message = "Empty description")
-    @Column(name = "product_description")
+    @NotEmpty(message = "описание не должен быть пустым")
+    @Column(name = "description")
     private String description;
 
-    @NotEmpty(message = "Empty photo")
-    @Column(name = "product_photo")
+    @NotEmpty(message = "фото не должен быть пустым")
+    @Column(name = "photo")
     private String photo;
 
-    @Min(value = 1, message = "Price must be greater than zero")
-    @Column(name = "product_price")
+    @Min(value = 1, message = "Цена должна быть неотрицательной и больше 0")
+    @Column(name = "price")
     private int price;
 
 

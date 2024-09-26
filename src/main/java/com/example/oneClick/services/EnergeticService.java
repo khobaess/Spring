@@ -35,9 +35,26 @@ public class EnergeticService {
     }
 
     @Transactional
-    public void update(int id, Energetic energetic){
-        energetic.setId(id);
-        energeticRepository.save(energetic);
+    public void update(int id, Energetic energetic) {
+        Optional<Energetic> optionalEnergetic = energeticRepository.findById(id);
+        if (optionalEnergetic.isPresent()) {
+            Energetic existingEnergetic = optionalEnergetic.get();
+
+            if (energetic.getName() != null) {
+                existingEnergetic.setName(energetic.getName());
+            }
+            if (energetic.getDescription() != null) {
+                existingEnergetic.setDescription(energetic.getDescription());
+            }
+            if (energetic.getPhoto() != null) {
+                existingEnergetic.setPhoto(energetic.getPhoto());
+            }
+            if (energetic.getPrice() > 0) {
+                existingEnergetic.setPrice(energetic.getPrice());
+            }
+
+            energeticRepository.save(existingEnergetic);
+        }
     }
 
     @Transactional

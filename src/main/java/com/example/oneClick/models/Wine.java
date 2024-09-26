@@ -1,6 +1,7 @@
 package com.example.oneClick.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -9,22 +10,23 @@ public class Wine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "wine_id")
+    @Column(name = "id")
     private int id;
 
-    @NotEmpty
-    @Column(name = "wine_name")
+    @NotEmpty(message = "имя не должен быть пустым")
+    @Column(name = "name")
     private String name;
 
-    @NotEmpty
-    @Column(name = "wine_description")
+    @NotEmpty(message = "описание не должен быть пустым")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "wine_photo")
+    @NotEmpty(message = "фото не должен быть пустым")
+    @Column(name = "photo")
     private String photo;
 
-    @NotEmpty
-    @Column(name = "wine_price")
+    @Min(value = 1, message = "Цена должна быть неотрицательной и больше 0")
+    @Column(name = "price")
     private int price;
 
 

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 public class Person {
 
     @Id
-    @Column(name = "person_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -21,11 +21,11 @@ public class Person {
 
     @NotEmpty(message = "Email не должен быть пустым")
     @Email(message = "Email неправильного формата")
-    @Column(name = "person_email")
+    @Column(name = "email")
     private String email;
 
     @NotEmpty(message = "Пароль не должен быть пустым")
-    @Column(name = "person_password")
+    @Column(name = "password")
     private String password;
 
     public Person () { }

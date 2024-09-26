@@ -9,13 +9,6 @@
         body {
             background-color: #f4f4f4;
         }
-        .card {
-            transition: transform 0.3s ease;
-            margin-bottom: 20px;
-        }
-        .card:hover {
-            transform: scale(1.02); /* Легкое увеличение карточки при наведении */
-        }
         .card-img-top {
             height: 200px;
             object-fit: cover;
@@ -24,10 +17,13 @@
             background-color: white;
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для карточек */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .form-group {
             margin-bottom: 1.5rem;
+        }
+        .create-form {
+            margin-bottom: 20px;
         }
         @media (max-width: 768px) {
             .card {
@@ -40,33 +36,85 @@
 
 <div class="container">
     <div class="row">
-        <!-- Используем col-md-4 для 3 колонок на больших экранах, col-sm-6 для 2 на маленьких, col-12 для 1 колонки на мобильных -->
-        <div class="col-lg-4 col-md-6 col-sm-12" th:each="prod : ${champagnes}">
-            <div class="card">
-                <img th:src="${prod.getPhoto()}" class="card-img-top" alt="Изображение товара">
+        <div class="col-12 create-form">
+            <h2>Создание нового товара</h2>
+            <form th:method="post" th:action="@{/champagne_create}" th:object="${champagne}">
+                <div class="form-group">
+                    <label for="nam">Имя</label>
+                    <input th:field="*{name}" class="form-control" id="nam" placeholder="">
+                    <div th:if="${#fields.hasErrors('name')}" class="text-danger">
+                        <span th:errors="*{name}">Ошибка</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="p">Фото</label>
+                    <input th:field="*{photo}" class="form-control" id="p" placeholder="">
+                    <div th:if="${#fields.hasErrors('photo')}" class="text-danger">
+                        <span th:errors="*{photo}">Ошибка</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="emai">Описание</label>
+                    <input th:field="*{description}" class="form-control" id="emai" placeholder="">
+                    <div th:if="${#fields.hasErrors('description')}" class="text-danger">
+                        <span th:errors="*{description}">Ошибка</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pas">Цена</label>
+                    <input type="number" th:field="*{price}" class="form-control" id="pas" placeholder="">
+                    <div th:if="${#fields.hasErrors('price')}" class="text-danger">
+                        <span th:errors="*{price}">Ошибка</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Создать товар</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12" th:each="champagne : ${product}">
+            <div class="content">
+                <img th:src="${champagne.getPhoto()}" class="card-img-top" alt="Изображение товара">
                 <div class="card-body d-flex flex-column">
-                    <a th:href="@{/champagne/{id}(id=${prod.getId()})}" class="card-title black-link" th:text="${prod.getName()}"></a>
-                    <p th:text="${prod.getPrice()} + ' руб/шт'"></p>
+                    <a th:href="@{/champagne/{id}(id=${champagne.getId()})}" class="card-title black-link" th:text="${champagne.getName()}"></a>
+                    <p th:text="${champagne.getPrice()} + ' руб/шт'"></p>
+                    <h2>Редактирование</h2>
+                    <form th:method="patch" th:action="@{/champagne/{id}(id=${champagne.getId()})}" th:object="${champagne}">
 
-                    <!-- Форма редактирования товара -->
-                    <form th:method="PATCH" th:action="@{/prod/{id}(id=${prod.getId()})}" th:object="${champagne}">
                         <div class="form-group">
-                            <label for="name">Название</label>
-                            <input th:field="*{name}" class="form-control" id="name" placeholder="Введите название">
+                            <label for="name">Имя</label>
+                            <input th:field="*{name}" class="form-control" id="name" placeholder="">
+                            <div th:if="${#fields.hasErrors('name')}" class="text-danger">
+                                <span th:errors="*{name}">Error message</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="photo">Фото</label>
+                            <input th:field="*{photo}" class="form-control" id="photo" placeholder="">
+                            <div th:if="${#fields.hasErrors('photo')}" class="text-danger">
+                                <span th:errors="*{photo}">Error message</span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="description">Описание</label>
-                            <input th:field="*{description}" class="form-control" id="description" placeholder="Введите описание">
+                            <input th:field="*{description}" class="form-control" id="description" placeholder="">
+                            <div th:if="${#fields.hasErrors('description')}" class="text-danger">
+                                <span th:errors="*{description}">Error message</span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="price">Цена</label>
-                            <input th:field="*{price}" class="form-control" id="price" placeholder="Введите цену">
+                            <input th:field="*{price}" class="form-control" id="price" placeholder="">
+                            <div th:if="${#fields.hasErrors('price')}" class="text-danger">
+                                <span th:errors="*{price}">Error message</span>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Сохранить изменения</button>
                     </form>
 
-                    <!-- Форма удаления товара -->
-                    <form th:action="@{/champagne_delete/{id}(id=${prod.getId()})}" th:method="post" style="margin-top: 10px;">
+                    <form th:action="@{/champagne_delete/{id}(id=${champagne.getId()})}" th:method="delete" style="margin-top: 10px;">
                         <input type="hidden" name="_method" value="delete">
                         <button type="submit" class="btn btn-danger">Удалить</button>
                     </form>

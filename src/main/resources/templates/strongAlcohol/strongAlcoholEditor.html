@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col-12 create-form">
             <h2>Создание нового товара</h2>
-            <form th:method="post" th:action="@{/energetic_create}" th:object="${energetic}">
+            <form th:method="post" th:action="@{/strongAlcohol_create}" th:object="${strongAlcohol}">
                 <div class="form-group">
                     <label for="nam">Имя</label>
                     <input th:field="*{name}" class="form-control" id="nam" placeholder="">
@@ -74,14 +74,14 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12" th:each="energetic : ${product}">
+        <div class="col-lg-4 col-md-6 col-sm-12" th:each="strongAlcohol : ${product}">
             <div class="content">
-                <img th:src="${energetic.getPhoto()}" class="card-img-top" alt="Изображение товара">
+                <img th:src="${strongAlcohol.getPhoto()}" class="card-img-top" alt="Изображение товара">
                 <div class="card-body d-flex flex-column">
-                    <a th:href="@{/energetic/{id}(id=${energetic.getId()})}" class="card-title black-link" th:text="${energetic.getName()}"></a>
-                    <p th:text="${energetic.getPrice()} + ' руб/шт'"></p>
+                    <a th:href="@{/strongAlcohol/{id}(id=${strongAlcohol.getId()})}" class="card-title black-link" th:text="${strongAlcohol.getName()}"></a>
+                    <p th:text="${strongAlcohol.getPrice()} + ' руб/шт'"></p>
                     <h2>Редактирование</h2>
-                    <form th:method="patch" th:action="@{/energetic/{id}(id=${energetic.getId()})}" th:object="${energetic}">
+                    <form th:method="patch" th:action="@{/strongAlcohol/{id}(id=${strongAlcohol.getId()})}" th:object="${strongAlcohol}">
 
                         <div class="form-group">
                             <label for="name">Имя</label>
@@ -114,7 +114,7 @@
                         <button type="submit" class="btn btn-primary">Сохранить изменения</button>
                     </form>
 
-                    <form th:action="@{/energetic_delete/{id}(id=${energetic.getId()})}" th:method="delete" style="margin-top: 10px;">
+                    <form th:action="@{/strongAlcohol_delete/{id}(id=${strongAlcohol.getId()})}" th:method="delete" style="margin-top: 10px;">
                         <input type="hidden" name="_method" value="delete">
                         <button type="submit" class="btn btn-danger">Удалить</button>
                     </form>

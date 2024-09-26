@@ -1,7 +1,9 @@
 package com.example.oneClick.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "champagne")
@@ -9,19 +11,23 @@ public class Champagne {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "champagne_id")
+    @Column(name = "id")
     private int id;
 
-    @NotEmpty
-    @Column(name = "champagne_name")
+    @NotEmpty(message = "имя не должен быть пустым")
+    @Column(name = "name")
     private String name;
-    @NotEmpty
-    @Column(name = "champagne_description")
+
+    @NotEmpty(message = "описание не должен быть пустым")
+    @Column(name = "description")
     private String description;
-    @Column(name = "champagne_photo")
+
+    @NotEmpty(message = "фото не должен быть пустым")
+    @Column(name = "photo")
     private String photo;
-    @NotEmpty
-    @Column(name = "champagne_price")
+
+    @Min(value = 1, message = "Цена должна быть неотрицательной и больше 0")
+    @Column(name = "price")
     private int price;
 
 
@@ -29,6 +35,7 @@ public class Champagne {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -56,9 +63,6 @@ public class Champagne {
     public void setPrice(int price) {
         this.price = price;
     }
-
-
-
 
     public void setId(int id) {
         this.id = id;

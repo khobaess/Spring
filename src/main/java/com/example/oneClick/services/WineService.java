@@ -34,9 +34,27 @@ public class WineService {
     }
 
     @Transactional
-    public void update(int id, Wine strongAlcohol){
-        strongAlcohol.setId(id);
-        wineRepository.save(strongAlcohol);
+    public void update(int id, Wine wine) {
+        Optional<Wine> optionalWine = wineRepository.findById(id);
+        if (optionalWine.isPresent()) {
+            Wine existingWine = optionalWine.get();
+
+
+            if (wine.getName() != null) {
+                existingWine.setName(wine.getName());
+            }
+            if (wine.getDescription() != null) {
+                existingWine.setDescription(wine.getDescription());
+            }
+            if (wine.getPhoto() != null) {
+                existingWine.setPhoto(wine.getPhoto());
+            }
+            if (wine.getPrice() > 0) {
+                existingWine.setPrice(wine.getPrice());
+            }
+
+            wineRepository.save(existingWine);
+        }
     }
 
     @Transactional

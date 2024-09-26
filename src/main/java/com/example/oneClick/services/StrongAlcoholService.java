@@ -35,9 +35,26 @@ public class StrongAlcoholService {
     }
 
     @Transactional
-    public void update(int id, StrongAlcohol strongAlcohol){
-        strongAlcohol.setId(id);
-        strongAlcoholRepository.save(strongAlcohol);
+    public void update(int id, StrongAlcohol strongAlcohol) {
+        Optional<StrongAlcohol> optionalStrongAlcohol = strongAlcoholRepository.findById(id);
+        if (optionalStrongAlcohol.isPresent()) {
+            StrongAlcohol existingStrongAlcohol = optionalStrongAlcohol.get();
+
+            if (strongAlcohol.getName() != null) {
+                existingStrongAlcohol.setName(strongAlcohol.getName());
+            }
+            if (strongAlcohol.getDescription() != null) {
+                existingStrongAlcohol.setDescription(strongAlcohol.getDescription());
+            }
+            if (strongAlcohol.getPhoto() != null) {
+                existingStrongAlcohol.setPhoto(strongAlcohol.getPhoto());
+            }
+            if (strongAlcohol.getPrice() > 0) {
+                existingStrongAlcohol.setPrice(strongAlcohol.getPrice());
+            }
+
+            strongAlcoholRepository.save(existingStrongAlcohol);
+        }
     }
 
     @Transactional

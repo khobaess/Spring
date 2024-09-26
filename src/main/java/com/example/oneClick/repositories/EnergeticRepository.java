@@ -8,5 +8,4 @@ import java.util.Optional;
 
 @Repository
 public interface EnergeticRepository extends JpaRepository <Energetic, Integer>{
-    Optional<Energetic> findById(int id);
 }

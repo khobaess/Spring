@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col-12 create-form">
             <h2>Создание нового товара</h2>
-            <form th:method="post" th:action="@{/energetic_create}" th:object="${energetic}">
+            <form th:method="post" th:action="@{/wine_create}" th:object="${wine}">
                 <div class="form-group">
                     <label for="nam">Имя</label>
                     <input th:field="*{name}" class="form-control" id="nam" placeholder="">
@@ -74,14 +74,14 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12" th:each="energetic : ${product}">
+        <div class="col-lg-4 col-md-6 col-sm-12" th:each="wine : ${product}">
             <div class="content">
-                <img th:src="${energetic.getPhoto()}" class="card-img-top" alt="Изображение товара">
+                <img th:src="${wine.getPhoto()}" class="card-img-top" alt="Изображение товара">
                 <div class="card-body d-flex flex-column">
-                    <a th:href="@{/energetic/{id}(id=${energetic.getId()})}" class="card-title black-link" th:text="${energetic.getName()}"></a>
-                    <p th:text="${energetic.getPrice()} + ' руб/шт'"></p>
+                    <a th:href="@{/wine/{id}(id=${wine.getId()})}" class="card-title black-link" th:text="${wine.getName()}"></a>
+                    <p th:text="${wine.getPrice()} + ' руб/шт'"></p>
                     <h2>Редактирование</h2>
-                    <form th:method="patch" th:action="@{/energetic/{id}(id=${energetic.getId()})}" th:object="${energetic}">
+                    <form th:method="patch" th:action="@{/wine/{id}(id=${wine.getId()})}" th:object="${wine}">
 
                         <div class="form-group">
                             <label for="name">Имя</label>
@@ -114,7 +114,7 @@
                         <button type="submit" class="btn btn-primary">Сохранить изменения</button>
                     </form>
 
-                    <form th:action="@{/energetic_delete/{id}(id=${energetic.getId()})}" th:method="delete" style="margin-top: 10px;">
+                    <form th:action="@{/wine_delete/{id}(id=${wine.getId()})}" th:method="delete" style="margin-top: 10px;">
                         <input type="hidden" name="_method" value="delete">
                         <button type="submit" class="btn btn-danger">Удалить</button>
                     </form>

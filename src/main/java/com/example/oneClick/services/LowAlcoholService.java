@@ -35,9 +35,26 @@ public class LowAlcoholService {
     }
 
     @Transactional
-    public void update(int id, LowAlcohol lowAlcohol){
-        lowAlcohol.setId(id);
-        lowAlcoholRepository.save(lowAlcohol);
+    public void update(int id, LowAlcohol lowAlcohol) {
+        Optional<LowAlcohol> optionalLowAlcohol = lowAlcoholRepository.findById(id);
+        if (optionalLowAlcohol.isPresent()) {
+            LowAlcohol existingLowAlcohol = optionalLowAlcohol.get();
+
+            if (lowAlcohol.getName() != null) {
+                existingLowAlcohol.setName(lowAlcohol.getName());
+            }
+            if (lowAlcohol.getDescription() != null) {
+                existingLowAlcohol.setDescription(lowAlcohol.getDescription());
+            }
+            if (lowAlcohol.getPhoto() != null) {
+                existingLowAlcohol.setPhoto(lowAlcohol.getPhoto());
+            }
+            if (lowAlcohol.getPrice() > 0) {
+                existingLowAlcohol.setPrice(lowAlcohol.getPrice());
+            }
+
+            lowAlcoholRepository.save(existingLowAlcohol);
+        }
     }
 
     @Transactional
