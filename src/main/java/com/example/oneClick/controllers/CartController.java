@@ -11,12 +11,4 @@ public class CartController {
         return "order/cart";
     }
 
-    @Controller
-    public static class CartController {
-
-        @GetMapping("/cart")
-        public String Cart(){
-            return "order/cart";
-        }
-    }
 }
