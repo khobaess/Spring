@@ -1,0 +1,168 @@
+/* Общие стили для всего сайта */
+body {
+    background-color: #f9f9f9; /* Более светлый фон */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Использование современного шрифта */
+    margin: 0;
+    padding: 0;
+}
+
+/* Стили для заголовков */
+.header {
+    text-align: center;
+    background-color: #4a90e2; /* Измененный цвет фона для заголовка */
+    color: white;
+    padding: 30px 20px; /* Добавлены более крупные отступы */
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.header h1 {
+    font-size: 3rem;
+    margin: 0; /* Убираем отступ */
+}
+
+.header p {
+    font-size: 1.2rem;
+}
+
+/* Стили для боковой панели (sidebar) */
+.sidebar {
+    background-color: #f5f5f5; /* Более светлый фон */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Добавлена тень */
+}
+
+.sidebar a {
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+    display: block;
+    padding: 10px 15px; /* Уменьшены отступы */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #4a90e2; /* Фон при наведении */
+    color: white; /* Цвет текста при наведении */
+}
+
+/* Стили для контента */
+.content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px; /* Увеличены отступы */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Добавлена тень */
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Стили для кнопок */
+.btn {
+    border-radius: 5px;
+    padding: 10px 15px; /* Увеличены отступы */
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #4a90e2;
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #357ab8; /* Более темный оттенок при наведении */
+}
+
+.btn-success {
+    background-color: #28a745; /* Зеленая кнопка */
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #218838; /* Темно-зеленый при наведении */
+}
+
+/* Стили для сообщений об ошибках */
+.alert {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Добавочные стили для улучшенного внешнего вида */
+.container {
+    max-width: 1200px;
+    margin: 20px auto; /* Центрируем контейнер */
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Каталог кнопка */
+.catalog-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #17a2b8; /* Цвет кнопки */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.catalog-button:hover {
+    background-color: #138496; /* Темный оттенок при наведении */
+}
+
+/* Изображение товара */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Заголовок товара */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Описание товара */
+p {
+    font-size: 1rem; /* Уменьшенный размер шрифта */
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* Цена */
+.price {
+    font-size: 1.5rem;
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.buy-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6f61; /* Мягкий красный цвет */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+    background-color: #e65c50; /* Темнее на наведение */
+}
